@@ -1,0 +1,155 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 900px;
+                 background-color: #222222;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "#97c2fc", "font": {"color": "white"}, "id": "webmaster@selectsmart.com", "label": "webmaster@selectsmart.com", "shape": "dot", "size": 10}, {"color": "red", "font": {"color": "white"}, "id": "ebass@enron.com", "label": "ebass@enron.com", "shape": "dot", "size": 50}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "reaganmathews@yahoo.com", "label": "reaganmathews@yahoo.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "onlinebill@swbell.com", "label": "onlinebill@swbell.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "aimr2001@bbh1.viamedialinq.com", "label": "aimr2001@bbh1.viamedialinq.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "om_80710741@cmates.com", "label": "om_80710741@cmates.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "direct@ameritrade.com", "label": "direct@ameritrade.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "support@hotwire.com", "label": "support@hotwire.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "sbconlinebilling@sbc.m0.net", "label": "sbconlinebilling@sbc.m0.net", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "cchristopher@skippingstone.com", "label": "cchristopher@skippingstone.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "orders@shutterfly.com", "label": "orders@shutterfly.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "lwbthemarine@bigplanet.com", "label": "lwbthemarine@bigplanet.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "jason.bass2@compaq.com", "label": "jason.bass2@compaq.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "bryan.hull@enron.com", "label": "bryan.hull@enron.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "ticket@swbellcottonbowl.org", "label": "ticket@swbellcottonbowl.org", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "bthoskins@hotmail.com", "label": "bthoskins@hotmail.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "mballases@hotmail.com", "label": "mballases@hotmail.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "ameritrade_034489@ameritrade.customer-email.com", "label": "ameritrade_034489@ameritrade.customer-email.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "info@online.hrblock.com", "label": "info@online.hrblock.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "great_steaks@offer.omahasteaks.com", "label": "great_steaks@offer.omahasteaks.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "emailclub@telluridecolorado.net", "label": "emailclub@telluridecolorado.net", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "abaker@skippingstone.com", "label": "abaker@skippingstone.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "order-update@amazon.com", "label": "order-update@amazon.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "reliantenergy@ebillcare.com", "label": "reliantenergy@ebillcare.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "contact@dew-consulting.com", "label": "contact@dew-consulting.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "jribnick@interchange-energy.com", "label": "jribnick@interchange-energy.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "forbes@wd11.com", "label": "forbes@wd11.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "gary.w.lamphier@enron.com", "label": "gary.w.lamphier@enron.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "mcuilla@enron.com", "label": "mcuilla@enron.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "perfmgmt@enron.com", "label": "perfmgmt@enron.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "customerservice@1800flowers.com", "label": "customerservice@1800flowers.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "news@eyeforenergy.com", "label": "news@eyeforenergy.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "tommybomb88@hotmail.com", "label": "tommybomb88@hotmail.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "service@capitalone.bfi0.com", "label": "service@capitalone.bfi0.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "commissioner@commissioner.com", "label": "commissioner@commissioner.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "book-news@amazon.com", "label": "book-news@amazon.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "special-offers-help@mail.southwest.com", "label": "special-offers-help@mail.southwest.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "plove@enron.com", "label": "plove@enron.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "info@electionintegrity2000.com", "label": "info@electionintegrity2000.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "1800flowers.23274514@s2u2.com", "label": "1800flowers.23274514@s2u2.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "lily@mailfromftd.com", "label": "lily@mailfromftd.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "store-news@amazon.com", "label": "store-news@amazon.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "no-reply@mail.southwest.com", "label": "no-reply@mail.southwest.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "annualconference@prosrm.com", "label": "annualconference@prosrm.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "bob@alohablooms.com", "label": "bob@alohablooms.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "rob@alohablooms.com", "label": "rob@alohablooms.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "video@amazon.com", "label": "video@amazon.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "auto-confirm@amazon.com", "label": "auto-confirm@amazon.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "eblastoff@rocketball.com", "label": "eblastoff@rocketball.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "owner-aimr2001@bbh1.viamedialinq.com", "label": "owner-aimr2001@bbh1.viamedialinq.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "1800flowers.31022507@s2u2.com", "label": "1800flowers.31022507@s2u2.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "customers@travelnow.com", "label": "customers@travelnow.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "customersupport@pogo.com", "label": "customersupport@pogo.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "holiday2@amazon.com", "label": "holiday2@amazon.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "ship-confirm@amazon.com", "label": "ship-confirm@amazon.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "deals@bestfares.com", "label": "deals@bestfares.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "gift@amazon.com", "label": "gift@amazon.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "mail@buzz.shutterfly.com", "label": "mail@buzz.shutterfly.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "announce-list@sfx.com", "label": "announce-list@sfx.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "1800flowers@shop2u.com", "label": "1800flowers@shop2u.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "fantsup@sportsline.com", "label": "fantsup@sportsline.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "thanks@amazon.com", "label": "thanks@amazon.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "ed.m.fore@lmco.com", "label": "ed.m.fore@lmco.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "orders@amazon.com", "label": "orders@amazon.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "texas@georgewbush.com", "label": "texas@georgewbush.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "bmwna@bmwna.rgc2.net", "label": "bmwna@bmwna.rgc2.net", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "reservations@marriott.com", "label": "reservations@marriott.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "a_la_zing@meals.alazing.com", "label": "a_la_zing@meals.alazing.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "account-update@amazon.com", "label": "account-update@amazon.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "jpetriello@prebon.com", "label": "jpetriello@prebon.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "thehotwire@hotwire.m0.net", "label": "thehotwire@hotwire.m0.net", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "newsletter@investorama.com", "label": "newsletter@investorama.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "registration@batch1.sportsrocket.com", "label": "registration@batch1.sportsrocket.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "daphneco64@alltel.net", "label": "daphneco64@alltel.net", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "showtimes@amazon.com", "label": "showtimes@amazon.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "michelle_dorsett@dell.com", "label": "michelle_dorsett@dell.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "noreply@ccomad3.uu.commissioner.com", "label": "noreply@ccomad3.uu.commissioner.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "neal.d.winfree@enron.com", "label": "neal.d.winfree@enron.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "ameritrade_011407@ameritrade.customer-email.com", "label": "ameritrade_011407@ameritrade.customer-email.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "ftd.com@mail2.ftdi.com", "label": "ftd.com@mail2.ftdi.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "info@millionsofamericans.com", "label": "info@millionsofamericans.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "specials@i-cruise.com", "label": "specials@i-cruise.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "bushnews@georgewbush.com", "label": "bushnews@georgewbush.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "prosnews@prosrm.com", "label": "prosnews@prosrm.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "lplotkin@burntsand.com", "label": "lplotkin@burntsand.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "6.1142.63-9fars3x4svcq.1@mail3.travelocity.com", "label": "6.1142.63-9fars3x4svcq.1@mail3.travelocity.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "radioa@radioamerica.org", "label": "radioa@radioamerica.org", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "hot-farealert@hotwire.m0.net", "label": "hot-farealert@hotwire.m0.net", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "mailer-daemon@shutterfly.com", "label": "mailer-daemon@shutterfly.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "documents.117729.3001.0@compliance.advancedclearing.com", "label": "documents.117729.3001.0@compliance.advancedclearing.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "partner-news@amazon.com", "label": "partner-news@amazon.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "customerservice@ameritrade.com", "label": "customerservice@ameritrade.com", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "newsletter@capitalone.bfi0.com", "label": "newsletter@capitalone.bfi0.com", "shape": "dot", "size": 10}]);
+                  edges = new vis.DataSet([{"arrows": "to", "from": "webmaster@selectsmart.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "reaganmathews@yahoo.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "onlinebill@swbell.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "aimr2001@bbh1.viamedialinq.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "om_80710741@cmates.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "direct@ameritrade.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "support@hotwire.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "sbconlinebilling@sbc.m0.net", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "cchristopher@skippingstone.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "orders@shutterfly.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "lwbthemarine@bigplanet.com", "to": "jason.bass2@compaq.com", "width": 1}, {"arrows": "to", "from": "lwbthemarine@bigplanet.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "bryan.hull@enron.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "ticket@swbellcottonbowl.org", "to": "ticket@swbellcottonbowl.org", "width": 1}, {"arrows": "to", "from": "ticket@swbellcottonbowl.org", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "bthoskins@hotmail.com", "to": "mballases@hotmail.com", "width": 1}, {"arrows": "to", "from": "bthoskins@hotmail.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "ameritrade_034489@ameritrade.customer-email.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "info@online.hrblock.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "great_steaks@offer.omahasteaks.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "emailclub@telluridecolorado.net", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "abaker@skippingstone.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "order-update@amazon.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "reliantenergy@ebillcare.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "ebass@enron.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "contact@dew-consulting.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "jribnick@interchange-energy.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "forbes@wd11.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "gary.w.lamphier@enron.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "gary.w.lamphier@enron.com", "to": "mcuilla@enron.com", "width": 1}, {"arrows": "to", "from": "perfmgmt@enron.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "customerservice@1800flowers.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "news@eyeforenergy.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "news@eyeforenergy.com", "to": "news@eyeforenergy.com", "width": 1}, {"arrows": "to", "from": "tommybomb88@hotmail.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "service@capitalone.bfi0.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "commissioner@commissioner.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "book-news@amazon.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "mballases@hotmail.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "special-offers-help@mail.southwest.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "plove@enron.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "info@electionintegrity2000.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "1800flowers.23274514@s2u2.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "lily@mailfromftd.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "store-news@amazon.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "no-reply@mail.southwest.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "annualconference@prosrm.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "bob@alohablooms.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "rob@alohablooms.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "video@amazon.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "auto-confirm@amazon.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "eblastoff@rocketball.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "owner-aimr2001@bbh1.viamedialinq.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "1800flowers.31022507@s2u2.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "customers@travelnow.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "customersupport@pogo.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "holiday2@amazon.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "ship-confirm@amazon.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "deals@bestfares.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "deals@bestfares.com", "to": "mcuilla@enron.com", "width": 1}, {"arrows": "to", "from": "gift@amazon.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "mail@buzz.shutterfly.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "announce-list@sfx.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "1800flowers@shop2u.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "fantsup@sportsline.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "thanks@amazon.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "ed.m.fore@lmco.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "orders@amazon.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "texas@georgewbush.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "bmwna@bmwna.rgc2.net", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "reservations@marriott.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "a_la_zing@meals.alazing.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "account-update@amazon.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "jpetriello@prebon.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "jpetriello@prebon.com", "to": "mcuilla@enron.com", "width": 1}, {"arrows": "to", "from": "thehotwire@hotwire.m0.net", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "newsletter@investorama.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "registration@batch1.sportsrocket.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "daphneco64@alltel.net", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "showtimes@amazon.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "michelle_dorsett@dell.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "noreply@ccomad3.uu.commissioner.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "noreply@ccomad3.uu.commissioner.com", "to": "mcuilla@enron.com", "width": 1}, {"arrows": "to", "from": "noreply@ccomad3.uu.commissioner.com", "to": "plove@enron.com", "width": 1}, {"arrows": "to", "from": "neal.d.winfree@enron.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "ameritrade_011407@ameritrade.customer-email.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "mcuilla@enron.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "ftd.com@mail2.ftdi.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "info@millionsofamericans.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "specials@i-cruise.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "bushnews@georgewbush.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "prosnews@prosrm.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "lplotkin@burntsand.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "6.1142.63-9fars3x4svcq.1@mail3.travelocity.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "radioa@radioamerica.org", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "hot-farealert@hotwire.m0.net", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "mailer-daemon@shutterfly.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "jason.bass2@compaq.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "documents.117729.3001.0@compliance.advancedclearing.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "partner-news@amazon.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "customerservice@ameritrade.com", "to": "ebass@enron.com", "width": 1}, {"arrows": "to", "from": "newsletter@capitalone.bfi0.com", "to": "ebass@enron.com", "width": 1}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>

@@ -1,0 +1,11 @@
+,in_degree,out_degree,pagerank
+klay@enron.com,1294,0,0.013189669786599526
+jeff.skilling@enron.com,662,56,0.007336563618920934
+kenneth.lay@enron.com,693,28,0.005955124244276478
+sara.shackleton@enron.com,604,695,0.0045134579899485175
+tana.jones@enron.com,571,740,0.004186745389770744
+ebass@enron.com,93,1,0.003864689621262416
+louise.kitchen@enron.com,560,349,0.0036465689694130726
+jeff.dasovich@enron.com,571,687,0.0033683218133782047
+sally.beck@enron.com,483,426,0.0032720663076553315
+gerald.nemec@enron.com,455,508,0.0028789775008675237

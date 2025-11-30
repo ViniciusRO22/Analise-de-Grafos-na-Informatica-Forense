@@ -1,0 +1,11 @@
+,in_degree,out_degree,closeness
+louise.kitchen@enron.com,560,349,0.13673698926752553
+john.lavorato@enron.com,391,244,0.13254501789328
+sally.beck@enron.com,483,426,0.13095049703073358
+tim.belden@enron.com,203,114,0.13039423925562568
+greg.whalley@enron.com,318,105,0.12833002721835712
+kenneth.lay@enron.com,693,28,0.12799114319929547
+david.delainey@enron.com,131,235,0.12742441889012465
+jeff.skilling@enron.com,662,56,0.1264446348096843
+tana.jones@enron.com,571,740,0.1262816460039124
+elizabeth.sager@enron.com,271,302,0.12624356034860457
