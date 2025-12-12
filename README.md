@@ -101,7 +101,6 @@ python src/Analysis/PlotSubGrafo.py
 ```
 
 Saídas geradas: em `dataSets/Outputs/`  como arquivos `.html`
-Exemplo: `subgrafo_interativo_jeff.skilling@enron.com.html`
 
 ### 6. Validação Estrutural 
 
@@ -117,7 +116,7 @@ Saídas geradas: em `dataSets/Outputs/`  como arquivos `.txt`
 
 ## 📂 Estrutura de Diretórios Importantes
 
-- `src/Analysis/`: Scripts de cálculo de métricas, simulação e visualização (PlotSubGrafo.py).  
+- `src/Analysis/`: Scripts de cálculo de métricas, simulação e visualização.  
 - `src/DataTreatment/`: Scripts de limpeza de dados.  
 - `dataSets/Inputs/`: Local para o dataset bruto (`EnronEmails.csv`).  
 - `dataSets/Outputs/`: Local onde os resultados (CSVs, JSONs, Gráficos, TXTs e HTMLs) são salvos.
