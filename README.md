@@ -9,10 +9,10 @@
 <p align="center">
   <a href="#-artigo-relacionado">Artigo Relacionado</a> •
   <a href="#-visão-geral-da-implementação">Visão Geral</a> •
-  <a href="#-pré-requisitos">Pré-Requisitos</a> •
+  <a href="#%EF%B8%8F-pré-requisitos">Pré-Requisitos</a> •
   <a href="#-como-executar">Como Executar</a> •
   <a href="#-estrutura-de-diretórios-importantes">Estrutura de Diretórios</a> •
-  <a href="#-autor">Autor</a>
+  <a href="#%E2%80%8D-autor">Autor</a>
 </p>
 
 Este repositório contém a implementação dos algoritmos e scripts utilizados no artigo sobre aplicação de Teoria dos Grafos em investigações forenses digitais, utilizando o *dataset* de e-mails da Enron.
