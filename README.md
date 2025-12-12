@@ -9,7 +9,7 @@
 <p align="center">
   <a href="#-artigo-relacionado">Artigo Relacionado</a> •
   <a href="#-visão-geral-da-implementação">Visão Geral</a> •
-  <a href="#-pre-requisitos">Pré-Requisitos</a> •
+  <a href="#-pré-requisitos">Pré-Requisitos</a> •
   <a href="#-como-executar">Como Executar</a> •
   <a href="#-estrutura-de-diretórios-importantes">Estrutura de Diretórios</a> •
   <a href="#-autor">Autor</a>
@@ -34,6 +34,8 @@ O projeto está estruturado em módulos Python que realizam desde o tratamento d
 * **Análise de Disrupção:** Simulação de ataques à rede para testar a resiliência da estrutura criminal/corporativa.
 * **Visualização Interativa:** Geração de subgrafos dinâmicos em HTML focados nos atores mais relevantes da rede.
 
+---
+
 ## 🛠️ Pré-Requisitos
 
 Para executar os scripts, é necessário ter o **Python 3.x** instalado. As dependências do projeto podem ser instaladas via `pip`.
@@ -47,6 +49,8 @@ pip install pandas networkx matplotlib python-louvain pyvis
 ```
 
 > **Nota:** A biblioteca de detecção de comunidades é a `python-louvain` (importada como `community`).
+
+---
 
 ## 🚀 Como Executar
 
@@ -109,7 +113,6 @@ python src/Analysis/VisualizadorGrafo.py
 
 Saídas geradas: em `dataSets/Outputs/`  como arquivos `.txt`
 
-
 ---
 
 ## 📂 Estrutura de Diretórios Importantes
@@ -117,10 +120,9 @@ Saídas geradas: em `dataSets/Outputs/`  como arquivos `.txt`
 - `src/Analysis/`: Scripts de cálculo de métricas, simulação e visualização (PlotSubGrafo.py).  
 - `src/DataTreatment/`: Scripts de limpeza de dados.  
 - `dataSets/Inputs/`: Local para o dataset bruto (`EnronEmails.csv`).  
-- `dataSets/Outputs/`: Local onde os resultados (CSVs, JSONs, Gráficos, TXTs e HTMLs interativos) são salvos.
+- `dataSets/Outputs/`: Local onde os resultados (CSVs, JSONs, Gráficos, TXTs e HTMLs) são salvos.
 
 ---
-
 ## 👨‍💻 Autor
 
 <div align="center">
