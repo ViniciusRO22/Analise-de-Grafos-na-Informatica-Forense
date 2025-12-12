@@ -10,7 +10,6 @@
   <a href="#-artigo-relacionado">Artigo Relacionado</a> •
   <a href="#-visão-geral-da-implementação">Visão Geral</a> •
   <a href="#-pré-requisitos">Pré-requisitos</a> •
-  <a href="#-bibliotecas-necessárias">Bibliotecas</a> •
   <a href="#-como-executar">Como Executar</a> •
   <a href="#-estrutura-de-diretórios-importantes">Estrutura de Diretórios</a> •
   <a href="#-autor">Autor</a>
@@ -122,7 +121,7 @@ Saídas geradas: em `dataSets/Outputs/`  como arquivos `.txt`
 
 ---
 
-## 👨‍💻 Author
+## 👨‍💻 Autor
 
 <div align="center">
   <a href="https://github.com/ViniciusRO22">
