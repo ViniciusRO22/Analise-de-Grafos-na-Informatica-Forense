@@ -21,7 +21,7 @@ Este repositório contém a implementação dos algoritmos e scripts utilizados 
 
 A documentação completa da metodologia, fundamentação teórica e discussão dos resultados encontra-se no artigo associado a este projeto.
 
-> [**Clique aqui para acessar o Artigo Completo**](LINK_DO_SEU_ARTIGO_AQUI)
+> [**Clique aqui para acessar o Artigo**](https://github.com/ViniciusRO22/Analise-de-Grafos-na-Informatica-Forense/blob/main/Análise_de_Grafos_na_Informática_Forense.pdf)
 
 ---
 
